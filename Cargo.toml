@@ -1,0 +1,19 @@
+[package]
+name = "bassasio-sys"
+version = "0.2.0"
+edition = "2021"
+description = "Raw FFI bindings for BASSASIO 1.4 (Windows ASIO audio library)"
+license = "MIT OR Apache-2.0"
+# BASSASIO is Windows-only (ASIO is a Windows/hardware-level API).
+# This crate will not compile on non-Windows targets.
+
+[dependencies]
+# bass-sys provides shared primitive types (BOOL, DWORD, HSTREAM, error codes, …).
+# Adjust path to match your workspace layout.
+bass-sys = { path = "../bass-sys" }
+
+[build-dependencies]
+# No special build dependencies; linking is handled in build.rs.
+
+# NOTE: Target must be Windows (x86_64-pc-windows-msvc or i686-pc-windows-msvc).
+# Cross-compilation requires a Windows SDK / cross-toolchain that resolves BASSASIO.LIB.
